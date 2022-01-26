@@ -7,7 +7,7 @@ import javax.swing.*;
 public class Welcome extends JFrame
 {
     JPanel p1, p2; JButton b1, b2, b3; ImageIcon ic; String path; JLabel l1;
-
+    // I am uthso
     Welcome()
     {
         //JFrame sizing and positioning
