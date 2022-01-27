@@ -42,7 +42,7 @@ public class LoadingScr extends JFrame
             pb.setValue(cnt);
             try
             {
-                Thread.sleep(80);
+                Thread.sleep(1);
             }
             catch(InterruptedException e)
             {

@@ -3,6 +3,7 @@ package welcome;
 import java.sql.*;
 import javax.swing.*;
 
+
 public class MyData {
     public static void createPasswordTable(){
         try{
@@ -41,11 +42,6 @@ public class MyData {
         try{
             String sql = "SELECT * FROM division";
             getStatement().executeQuery(sql);
-            // getStatement().executeUpdate(sql);
-            // if(!getStatement().executeQuery(sql2).next()){
-                //     sql = "INSERT INTO division (name) VALUES('"  + div[0] + "', '" + div[1] + "', '" + div[2] + "', '" + div[3] + "', '" + div[4] + "', '" + div[5] + "', '" + div[6] + "', '" + div[7] + "');"; 
-                //     getStatement().executeQuery(sql);
-                // }
             } catch(Exception e){
                 String div[] = {"Barisal", "Chittagong", "Dhaka", "Khulna", "Mymensingh", "Rajshahi", "Rangpur", "Sylhet"}; //!Divisions list
                 String sql = "CREATE TABLE IF NOT EXISTS division (name VARCHAR(45));";
@@ -138,6 +134,15 @@ public class MyData {
                     JOptionPane.showMessageDialog(null, "Can't create division database " + f);
                 }
         }
+    }
+    
+    public static ResultSet getDivisionDistrict(String division){
+        try{
+            return getStatement().executeQuery("SELECT * FROM " + division);
+        } catch(Exception e){
+            JOptionPane.showMessageDialog(null, "Division not found");
+        }
+        return null;
     }
 
 }
