@@ -26,7 +26,7 @@ public class MyData {
             getStatement().executeUpdate(sql);
         }
         catch(Exception e){
-            // JOptionPane.showMessageDialog(null, e, "Medical Name", JOptionPane.WARNING_MESSAGE);
+            // JOptionPane.showMessageDialog(null, e, "Medical Name", JOptionPane.WARNING_MESSAGE); warnning
             JOptionPane.showMessageDialog(null, "College Aleady Registered", "Medical Name", JOptionPane.WARNING_MESSAGE);
         }
     }
