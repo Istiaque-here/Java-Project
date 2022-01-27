@@ -6,6 +6,8 @@ public class Main
     {
         //new LoadingScr();
         // new LogIn();
+        MyData.createPasswordTable();
         MyData.updateDivision();
     }
 }
+
