@@ -6,7 +6,7 @@ import javax.swing.*;
 
 public class Welcome extends JFrame
 {
-    JPanel p1, p2; JButton b1, b2, b3; ImageIcon ic; String path; JLabel l1;
+    JPanel panel_1, panel_2; JButton b1, b2, b3; ImageIcon ic; String path; JLabel l1;
     Welcome()
     {
         //JFrame sizing and positioning
@@ -17,21 +17,21 @@ public class Welcome extends JFrame
         setDefaultCloseOperation(3);
 
         //Panel1 sizing and positioning
-        p1 = new JPanel();
-        p1.setLayout(null);
-        p1.setBounds(0,0,300,400);
+        panel_1 = new JPanel();
+        panel_1.setLayout(null);
+        panel_1.setBounds(0,0,300,400);
         //path = "C:\\Users\\Istiaque Khalique\\Documents\\Medical Management System\\src\\images\\sip.jpg";
         ic = new ImageIcon(new ImageIcon(getClass().getResource("/images/sip.jpg")).getImage().getScaledInstance(300, 400, Image.SCALE_SMOOTH));
         l1 = new JLabel(ic);
         l1.setBounds(0,0,300,400);
-        p1.add(l1);
-        add(p1);
+        panel_1.add(l1);
+        add(panel_1);
 
         //Panel2 sizing and positioning
-        p2 = new JPanel();
-        p2.setLayout(null);
-        p2.setBounds(300,0,200,400);
-        p2.setBackground(Color.LIGHT_GRAY);
+        panel_2 = new JPanel();
+        panel_2.setLayout(null);
+        panel_2.setBounds(300,0,200,400);
+        panel_2.setBackground(Color.LIGHT_GRAY);
         
         //Panel2 components
         b1 = new JButton("LogIn");
@@ -40,7 +40,7 @@ public class Welcome extends JFrame
         b1.setBackground(Color.GREEN);
         b1.setFocusable(false);
         b1.setFont(new Font("Dialog",Font.BOLD,15));
-        p2.add(b1);
+        panel_2.add(b1);
 
         b2 = new JButton("Register");
         b2.setBounds(40,160,100,30);
@@ -48,7 +48,7 @@ public class Welcome extends JFrame
         b2.setBackground(Color.BLUE);
         b2.setFocusable(false);
         b2.setFont(new Font("Dialog",Font.BOLD,15));
-        p2.add(b2);
+        panel_2.add(b2);
 
         b3 = new JButton("Bloodbank");
         b3.setBounds(35,315,112,30);
@@ -56,9 +56,9 @@ public class Welcome extends JFrame
         b3.setBackground(Color.RED);
         b3.setFocusable(false);
         b3.setFont(new Font("Dialog",Font.BOLD,15));
-        p2.add(b3);
+        panel_2.add(b3);
 
-        add(p2);
+        add(panel_2);
 
         b1.addActionListener(new ActionListener ()
         {

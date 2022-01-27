@@ -3,6 +3,8 @@ package welcome;
 import java.awt.*;
 import javax.swing.*;
 import java.awt.event.*;
+import java.sql.ResultSet;
+import java.util.Locale;
 
 public class UserReg extends JFrame
 {
@@ -15,8 +17,8 @@ public class UserReg extends JFrame
     String year[] = {"Year","1950","1951","1952","1953","1954","1955","1956","1957","1958","1959","1960","1961","1962","1963","1964","1965","1966","1967","1968","1969","1970","1971","1972","1973","1974","1975","1976","1977","1978","1979","1980",
     "1981","1982","1983","1984","1985","1986","1987","1988","1989","1990","1991","1992","1993","1994","1995","1996","1997",
     "1998","1999","2000","2001","2002","2003","2004","2005","2006","2007","2008","2009","2010",};
-    String division[] = {"Select Division","Barisal","Chittagong","Dhaka","Khulna","Mymensingh","Rajshahi","Rangpur","Sylhet"};
-    String district[] = {"Select District"};
+    // String division[] = {"Select Division","Barisal","Chittagong","Dhaka","Khulna","Mymensingh","Rajshahi","Rangpur","Sylhet"};
+    // String district[] = {"Select District"};
 
     UserReg()
     {
@@ -134,12 +136,58 @@ public class UserReg extends JFrame
         addl.setFont(new Font("Dialog",Font.BOLD,15));
         add(addl);
 
-        divBox = new JComboBox(division);
+        DefaultComboBoxModel dm = new DefaultComboBoxModel();
+        ResultSet res = MyData.getDivisionDistrict("division");
+        try{
+            while(res.next()){
+                dm.addElement(res.getString("name"));
+            }
+        } catch(Exception e){
+            JOptionPane.showMessageDialog(null, "Cannot Load division combobox");
+        }
+        divBox = new JComboBox();
         divBox.setBounds(150,380,130,25);
+        divBox.setModel(dm);
         add(divBox);
 
-        disBox = new JComboBox(district);
+        divBox.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e){
+                DefaultComboBoxModel districtModel = new DefaultComboBoxModel();
+                String selectedDivision = String.valueOf(divBox.getSelectedItem()).toLowerCase(Locale.getDefault());
+                // JOptionPane.showMessageDialog(null, selectedDivision);
+                // selectedDivision.toLowerCase();
+                ResultSet districtResultSet = MyData.getDivisionDistrict(selectedDivision);
+                try{
+                    while(districtResultSet.next()){
+                        districtModel.addElement(districtResultSet.getString("districts"));
+                    }
+                } catch(Exception f){
+                    JOptionPane.showMessageDialog(null, "District Cannot Load");
+                }
+                disBox.setModel(districtModel);
+            }
+        });
+
+
+        // district_comboBox = new JComboBox();
+        // district_comboBox.setBounds(170,155,180,25);
+        DefaultComboBoxModel districtModel = new DefaultComboBoxModel();
+        String selectedDivision = String.valueOf(divBox.getSelectedItem()).toLowerCase(Locale.getDefault());
+        // JOptionPane.showMessageDialog(null, selectedDivision);
+        // selectedDivision.toLowerCase();
+        ResultSet districtResultSet = MyData.getDivisionDistrict(selectedDivision);
+        try{
+            while(districtResultSet.next()){
+                districtModel.addElement(districtResultSet.getString("districts"));
+            }
+        } catch(Exception e){
+            JOptionPane.showMessageDialog(null, "District Cannot Load");
+        }
+
+
+        disBox = new JComboBox();
         disBox.setBounds(285,380,160,25);
+        disBox.setModel(districtModel);
         add(disBox);
 
         //Back button
